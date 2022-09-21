@@ -33,7 +33,7 @@ function bubbleSort(array) {
   // Tu código:
   
 
-	for(var i=0; i<array.length; i++) {
+	for(var i=0; i<array.length-1; i++) {
 
 		for(var j=0; j< array.length; j++) {
 			if(array[j] > array[j+1]){
@@ -50,6 +50,29 @@ function bubbleSort(array) {
 
 }
 
+//obcion 2
+
+//[2,3,5,7,9]
+
+//let swap= true
+//
+// while(swap){
+//   swap=false;
+
+//   for(let i = 0 ;i <array.length-1;i++){
+//     if(array[i]> array[i+1]){
+//       let aux= array[i]
+//       array[i]=array[i+1]
+//       array[i+1] = aux
+//       swap = true
+
+//     }
+//   }
+// }return array;
+// }
+
+
+
 
 
 
@@ -64,24 +87,21 @@ function insertionSort(array) {
 
 
 	for(var i=1; i<array.length; i++) {
-		var j = i;
+		let j = i-1;
+    let  aux = array [i]
 		
-		while(j>0 && array[j-1] > array[j]) {
-			var arrayfinal = array[j-1];
-			array[j-1] = array[j];
-			array[j] = arrayfinal;
-			j--;
+		while(j>= 0 && aux< array[j] ) {
+		array[j+1] = array[j];
+       j--;
+			array[j+1] = aux;
+		
 		}
 	}
 	return array;	
 // 
 
 	
-//[5,3,4,1]
 
-// for(var i=0; i<array.length; i++)
-// let j =i
-//  while(      )
 
 
 }
@@ -95,27 +115,23 @@ function selectionSort(array) {
   // Tu código:
 
 
-//   for(var i=0; i<array.length; i++) {
+  for(let i=0; i<array.length; i++) {
+    let min = i;
 
-// 	for(var j=0; j< array.length; j++) {
-// 		if(array[j] > array[j+1]){
-// 			var elegir = array[j];
-// 			 array[j] = array[j+1]
-// 			array[j+1] = elegir;
-			
-// 		}
-// 	}
-// }
-
-// return array; 
- for (let i = 1; i < array.length; i++) {
-    for (let j = 0; j < array.length - i; j++) {
-		if (array[j] > array[j + 1]) {
-		  [array[j], array[j + 1]] = [array[j + 1], array[j]];
+	for(let j= i +1 ; j< array.length; j++) {
+		if(array [j] <array[min] ){
+			min=j
 		}
-	  }
 	}
-	return array;
+  if(i !==min){
+    let aux = array[i];
+    array[i] = array [min];
+    array[min] = aux;
+  }
+}
+
+return array; 
+ 
 }
 
 
