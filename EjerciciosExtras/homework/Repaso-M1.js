@@ -16,12 +16,21 @@ const {
 
 var countArray = function(array) {
     // Tu código aca:
-    
-}
+
+    return array.reduce(function(a,array)  {
+        var newB = Array.isArray(array) ? countArray( array ) : array;
+        return a + newB;
+      }, 0);
+    }
+  
 
 
-// Implementar la función countProps: a partir de un objeto en el cual cada propiedad puede contener
-// cualquier tipo de dato, determinar la cantidad de propiedades de objetos en cualquier nivel, ya sea el inicial
+
+// Implementar la función countProps: a partir de un
+// objeto en el cual cada propiedad puede contener
+// cualquier tipo de dato, 
+//determinar la cantidad de propiedades de objetos
+// en cualquier nivel, ya sea el inicial
 // u objetos anidados
 // Ejemplo:
 // var obj = {
