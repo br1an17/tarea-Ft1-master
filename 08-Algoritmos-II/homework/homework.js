@@ -11,21 +11,22 @@ function quickSort(array) {
     return array;
   }
 
-  let pivot = array.pop();
+  let pivot = array[Math.floor(Math.random()*array.length)];// va entre corchetes para usar la posicion del array como [i]
   let arrayi = [];
   let arrayd = [];
-  let final = [];
+  let medio = [];
 
 
   for (let i = 0; i < array.length; i++)
-    if (array[i] <= pivot) {
-      arrayi.push(array[i])
-    } else {
+    if (array[i] !== pivot) {
+      if(array[i]>pivot){
       arrayd.push(array[i])
+    } else {
+      arrayi.push(array[i])}
+    }else{
+    medio.push(array[i])
     }
-  return final.concat(quickSort(arrayi), pivot, quickSort(arrayd));
-
-
+  return quickSort(arrayi).concat(medio).concat(quickSort(arrayd));
 
 }
 

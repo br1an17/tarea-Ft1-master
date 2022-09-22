@@ -1,5 +1,5 @@
 'use strict'
-                        //111
+
 function BinarioADecimal(num) {
 
   // tu codigo aca
