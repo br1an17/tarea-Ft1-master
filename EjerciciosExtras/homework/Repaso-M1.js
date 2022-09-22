@@ -17,9 +17,12 @@ const {
 var countArray = function(array) {
     // Tu código aca:
 
-    return array.reduce(function(a,array)  {
-        var newB = Array.isArray(array) ? countArray( array ) : array;
-        return a + newB;
+    return array.reduce(function(count,valor)  {
+     if(Array.isArray(valor)) 
+     return  count = count + countArray(valor);
+     else
+
+        return count = count + valor;
       }, 0);
     }
   
@@ -49,7 +52,22 @@ var countArray = function(array) {
 var countProps = function(obj) {
     // Tu código aca:
 
+
+
+
+
+    let contador= 0
+for(const p in obj ){
+    contador ++
+    if ( typeof obj[p] === "object"){
+ if(!Array.isArray(obj[p])){
+    contador= contador + countProps(obj[p])
+ }
+    }
+}return contador;
 }
+
+
 
 
 // Implementar el método changeNotNumbers dentro del prototype de LinkedList que deberá cambiar
@@ -61,7 +79,21 @@ var countProps = function(obj) {
 //    Ahora la lista quedaría: Head --> [1] --> ['2'] --> [false] --> ['Kirikocho] y la función debería haber devuelto el valor 1
 
 LinkedList.prototype.changeNotNumbers = function(){
-    // Tu código aca:
+
+    let contador = 0;
+    let current = this.head;
+ while(current){
+    if(isNaN(Number(current.value))){
+         contador++;
+          current.value = 'Kiricocho';
+         }
+          current = current.next;
+        }
+
+ return contador;
+
+
+  
 
 }
 
@@ -74,10 +106,26 @@ LinkedList.prototype.changeNotNumbers = function(){
 // mergeQueues(queueOne, queueTwo) --> [7,2,3,4,5,6]
 // IMPORTANTE: NO son arreglos sino que son Queues.
 
-var mergeQueues = function(queueOne, queueTwo) {
+ var mergeQueues = function(queueOne, queueTwo) {
+
+ let queue = new Queue();
+
+while(queueOne.size()||queueTwo.size()){
+    let primerElemento = queueOne.dequeue();
+    let segundoElemento =queueTwo.dequeue();
+
+     if(primerElemento) queue.enqueue(primerElemento);
+     if(segundoElemento) queue.enqueue(segundoElemento);
+ }
+ return queue;
+}
+
+
+
+
     // Tu código aca:
 
-}
+
 
 
 // Implementar la funcion closureMult que permita generar nuevas funciones que representen
@@ -92,6 +140,10 @@ var mergeQueues = function(queueOne, queueTwo) {
 var closureMult = function(multiplier) {
     // Tu código aca:
 
+ return function(num){
+    return num*multiplier;
+ }
+
 }
 
 // Implementar el método sum dentro del prototype de BinarySearchTree
@@ -99,6 +151,10 @@ var closureMult = function(multiplier) {
 BinarySearchTree.prototype.sum = function() {
     // Tu código aca:
 
+  if(!this.right && !this.left) return this.value;
+  if(!this.right && this.left) return this.value + this.left.sum();
+  if(this.right && !this.left) return this.value + this.right.sum();
+  if(this.right && this.left) return this.value + this.right.sum() + this.left.sum();
 }
 
 module.exports = {
